@@ -11,10 +11,17 @@ class User < ActiveRecord::Base
   validates :email, :username, uniqueness:true
 
   attr_accessor :password
-  validates_presence_of(:password, on: :create)
-  validates_confirmation_of(:password)
+  #make validates
+  validates_presence_of :password, on: :create
+  validates_confirmation_of :password
+
+  validates_format_of :email, with: /\A[\w]+@[\w]+\.[\w]+\z/
+
+  validates_length_of :username, maximum: 40
+  validates_format_of :username, with: /\A[\w]+\z/
 
   before_save :encrypt_password
+  before_validation { self.username.downcase! }
 
   def encrypt_password
     if self.password.present?
