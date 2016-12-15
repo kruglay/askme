@@ -6,6 +6,7 @@ gem 'rails', '4.2.7.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
+gem 'rails-i18n', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
