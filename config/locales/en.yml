@@ -21,3 +21,6 @@
 
 en:
   hello: "Hello world"
+  question:
+    one: 'question'
+    other: 'questions'

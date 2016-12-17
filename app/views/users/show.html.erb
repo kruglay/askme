@@ -11,6 +11,9 @@
     <%= image_tag user_avatar(@user), class: 'user-image', alt: '[Фото]' %>
   </div>
 
+  <div class="buffer-both">
+    <%= link_to 'Редактировать профиль', edit_user_path(@user) %>
+  </div>
   <h2 class="title-small buffer-both">
     @<%= @user.username %>
   </h2>
