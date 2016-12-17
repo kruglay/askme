@@ -12,7 +12,7 @@
   </div>
 
   <div class="buffer-both">
-    <%= link_to 'Редактировать профиль', edit_user_path(@user) %>
+    <%= link_to 'Редактировать профиль', edit_user_path(@user) if current_user == @user %>
   </div>
   <h2 class="title-small buffer-both">
     @<%= @user.username %>
