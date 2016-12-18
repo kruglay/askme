@@ -19,4 +19,8 @@ $(function () {
         $('#ask-form').slideToggle(300);
         return false;
     });
+
+    $("#user_color").change(function() {
+       $("#user_color").css("color", this.value);
+    })
 });
