@@ -3,16 +3,20 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7.1'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
+gem 'uglifier'
 
 gem 'rails-i18n', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+group :production do
+  gem 'pg'
+end
 
 group :development, :test do
+  gem 'sqlite3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 end
