@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :load_user, except: [:index, :new, :create]
 
-  before_action :authorize_user, only: [:edit, :update]
+  before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -41,10 +41,12 @@ class UsersController < ApplicationController
     @new_question = @user.questions.build
   end
 
+  def destroy
+    @user.destroy if @user == current_user
+    redirect_to root_path, notice: "Ваш пользовтель удален(( Возвращайтесь, если передумаете"
+  end
+
   private
-
-
-
   def load_user
     @user = User.find(params[:id])
   end
