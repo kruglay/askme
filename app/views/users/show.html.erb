@@ -44,6 +44,7 @@
           <%#Мы создаем инпуты с нужными полями для формы, значения будут подставлены rails%>
           <%#автоматически%>
           <%= f.hidden_field :user_id %>
+          <%= f.hidden_field :questioning_user_id %>
 
           <div class="form-field">
             <%= f.label "Ваш вопрос для @#{@user.username}", class: 'form-label' %>
@@ -51,7 +52,7 @@
           </div>
 
           <div class="form-action">
-            <%= submit_tag 'Задать вопрос', class: 'button button-small button-dark' %>
+            <%= submit_tag 'Задать вопрос', class: 'button button-small button-dark', id: "ask_question" %>
           </div>
       <% end %>
     </div>

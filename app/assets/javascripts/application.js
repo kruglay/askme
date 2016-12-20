@@ -22,5 +22,14 @@ $(function () {
 
     $("#user_color").change(function() {
        $("#user_color").css("color", this.value);
-    })
+    });
+
+    // $("#new_question").submit(function(event){
+    //     alert("before");
+    //     if ($('#question_text').is(':empty')){
+    //         alert($('#question_text').val());
+    //         event.preventDefault();
+    //     };
+    //     alert("after");
+    // });
 });
