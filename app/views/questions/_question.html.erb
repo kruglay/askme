@@ -16,8 +16,13 @@
         </div>
     <% end %>
 
+
     <div class="question-date">
       <!-- Локализованный вывод даты вопроса в коротком формате -->
+      <% if question.questioning_user.present? %>
+          Вопрос задан <%= link_to question.questioning_user.username,
+                    user_path(question.questioning_user) %>
+      <% end %>
       <%= l(question.created_at, format: :short) %>
     </div>
 
