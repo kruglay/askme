@@ -10,15 +10,13 @@ class QuestionsController < ApplicationController
 
   # POST /questions
   def create
-
     @question = Question.new(question_params)
     @question.questioning_user = current_user if current_user.present?
     if @question.save
       redirect_to user_path(@question.user), notice: 'Вопрос задан'
     else
-      redirect_to user_path(@question.user), alert: 'Текст вопроса не был заполнен'
+      redirect_to user_path(@question.user), alert: 'Заполните текст вопроса'
     end
-
   end
 
   # PATCH/PUT /questions/1
@@ -56,6 +54,4 @@ class QuestionsController < ApplicationController
   def authorize_user
     reject_user unless @question.user == current_user
   end
-
-
 end
