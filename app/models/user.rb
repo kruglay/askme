@@ -1,7 +1,6 @@
 require 'openssl'
 
 class User < ActiveRecord::Base
-
   ITERATIONS = 20000
   DIGEST = OpenSSL::Digest::SHA256.new
 
