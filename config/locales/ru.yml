@@ -4,3 +4,6 @@ ru:
     one: 'вопрос'
     few: 'вопроса'
     many: 'вопросов'
+  models:
+    user:
+      wrong_background_color: 'Не верно указан цвет фона'

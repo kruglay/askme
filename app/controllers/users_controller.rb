@@ -29,9 +29,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    user_params_before_save = user_params
-    user_params_before_save[:color] = "" unless color_choices.flatten.include?(user_params[:color])
-    if @user.update(user_params_before_save)
+    if @user.update(user_params)
       redirect_to user_path(@user), notice: "Данные успешно обновлены"
     else
       render 'edit'
