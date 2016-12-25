@@ -3,6 +3,15 @@ require 'openssl'
 class User < ActiveRecord::Base
   ITERATIONS = 20000
   DIGEST = OpenSSL::Digest::SHA256.new
+  VALID_BG_COLORS =
+  [
+      [I18n.t('models.user.color.default'),'#005a55', {style: 'color: #005a55'}, {class: "form-select-option"}],
+      [I18n.t('models.user.color.slatergray'),'slategray', {style: 'color: slategray'}, {class: "form-select-option"}],
+      [I18n.t('models.user.color.blue'),'blue', {style: 'color: blue'}, {class: "form-select-option"}],
+      [I18n.t('models.user.color.turquoise'),'turquoise', {style: 'color: turquoise'}, {class: "form-select-option"}],
+      [I18n.t('models.user.color.orange'),'orange', {style: 'color: orange'}, {class: "form-select-option"}],
+      [I18n.t('models.user.color.green'),'green', {style: 'color: green'}, {class: "form-select-option"}]
+  ]
 
   has_many :questions
 
@@ -19,7 +28,8 @@ class User < ActiveRecord::Base
   validates_length_of :username, maximum: 40
   validates_format_of :username, with: /\A[\w]+\z/
 
-  validate :background_color_must_be_in_valid_color
+  validates_inclusion_of :color, in: VALID_BG_COLORS.map {|el| el[1]},
+                         on: :update
 
   before_save :encrypt_password
   before_validation { self.username.downcase! }
@@ -36,20 +46,6 @@ class User < ActiveRecord::Base
           OpenSSL::PKCS5.pbkdf2_hmac(self.password, self.password_salt, ITERATIONS, DIGEST.length, DIGEST)
       )
     end
-  end
-
-  def background_color_must_be_in_valid_color
-    errors.add('Цвет фона', "не верно указан") unless User.color_choices.flatten.include?(color)
-  end
-
-  def self.color_choices
-    [
-        ['Серый','slategray', {style: 'color: slategray'}, {class: "form-select-option"}],
-        ['Голубой','blue', {style: 'color: blue'}, {class: "form-select-option"}],
-        ['Бирюзовый','turquoise', {style: 'color: turquoise'}, {class: "form-select-option"}],
-        ['Ораньжевый','orange', {style: 'color: orange'}, {class: "form-select-option"}],
-        ['Зеленый','green', {style: 'color: green'}, {class: "form-select-option"}]
-    ]
   end
 
   def self.hash_to_string(password_hash)

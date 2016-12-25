@@ -5,6 +5,6 @@ module UsersHelper
 
   #возвращает список цветов для выбора
   def color_choices
-    User.color_choices
+    User::VALID_BG_COLORS
   end
 end

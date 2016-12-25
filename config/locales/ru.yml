@@ -1,4 +1,15 @@
 ru:
+  activerecord:
+    attributes:
+      user:
+        username: 'Никнейм'
+        name: 'Имя'
+        email: 'Логин(email)'
+        password: 'Пароль'
+        password_confirmation: 'Пароль еще раз'
+        color: 'Цвет фона аватарки'
+        avatar_url: 'URL вашей аватарки'
+
   question:
     zero: 'вопросов'
     one: 'вопрос'
@@ -7,3 +18,10 @@ ru:
   models:
     user:
       wrong_background_color: 'Не верно указан цвет фона'
+      color:
+        default: 'Стандартный'
+        slatergray: 'Серый'
+        blue: 'Голубой'
+        turquoise: 'Бирюзовый'
+        orange: 'Ораньжевый'
+        green: 'Зеленый'
