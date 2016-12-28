@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
                          on: :update
 
   before_save :encrypt_password
+
   before_validation { self.username.downcase! }
 
   def encrypt_password
@@ -67,4 +68,6 @@ class User < ActiveRecord::Base
       nil
     end
   end
+
+
 end

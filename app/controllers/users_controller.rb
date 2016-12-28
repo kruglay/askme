@@ -52,10 +52,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def authorize_user
-    reject_user unless @user == current_user
-  end
-
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation,
                                  :name, :username, :avatar_url, :color)
