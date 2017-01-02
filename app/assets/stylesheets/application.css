@@ -18,6 +18,7 @@
  *= require layout
  *= require questions
  *= require users
+ *= require tags
 
  *= require_self
  */

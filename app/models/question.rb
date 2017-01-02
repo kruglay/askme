@@ -24,7 +24,7 @@ class Question < ActiveRecord::Base
   def self.get_tags_from_question(question)
     tag_arr = []
     question.text.scan(/#[\w]+/).each do |tag|
-      tag_arr << tag.delete('#')
+      tag_arr << tag.downcase.delete('#')
     end
     tag_arr
   end

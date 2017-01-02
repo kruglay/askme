@@ -48,8 +48,14 @@ class UsersController < ApplicationController
   end
 
   private
+
   def load_user
     @user = User.find(params[:id])
+  end
+
+  # если загруженный из базы юзер и текущий залогиненный не совпадают - посылаем его
+  def authorize_user
+    reject_user unless @user == current_user
   end
 
   def user_params

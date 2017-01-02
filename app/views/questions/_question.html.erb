@@ -7,7 +7,7 @@
 <div class="question">
   <div class="question-content">
     <div class="question-text text-lead">
-      <%= question.text %>
+      <%= get_text_with_hashtags(question.text).html_safe %>
     </div>
 
     <% if question.answer.present? %>
@@ -21,7 +21,12 @@
       <!-- Локализованный вывод даты вопроса в коротком формате -->
       <% if question.questioning_user.present? %>
           Вопрос задан <%= link_to question.questioning_user.username,
-                    user_path(question.questioning_user) %>
+                                   user_path(question.questioning_user) %>
+      <% end %>
+
+      <%#show only for hashtags%>
+      <% if it_hashtags %>
+          для <%= link_to question.user.username, user_path(question.user) %>
       <% end %>
       <%= l(question.created_at, format: :short) %>
     </div>
