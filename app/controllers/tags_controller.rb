@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
   def index
-    @questions = Tag.all
+    @questions = Question.all
   end
 
   def show
