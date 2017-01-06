@@ -37,9 +37,9 @@
 
 <%#Блок со списком вопросов к пользователю%>
 <div class="column-4-4">
-  <% if @hashtag.present? %>
+  <% if @tag.present? %>
       <div class="title-medium color-white buffer-top">
-        <%= "Хештэг \"##{@hashtag.title}\" найден в:" %>
+        <%= "Хештэг \"##{@tag.title}\" найден в:" %>
       </div>
   <% end %>
   <div class="user-questions buffer-both">

@@ -1,6 +1,7 @@
 class Tag < ActiveRecord::Base
-  has_and_belongs_to_many :question
+  has_and_belongs_to_many :questions
 
   validates_presence_of :title
   validates_uniqueness_of :title
+  
 end

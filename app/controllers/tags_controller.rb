@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
   def show
-    @hashtag = Tag.find(params[:id])
-    @questions = @hashtag.question
+    @tag       = Tag.find(params[:id])
+    @questions = @tag.questions
   end
 end
