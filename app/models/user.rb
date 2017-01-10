@@ -1,17 +1,24 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id            :integer          not null, primary key
+#  name          :string
+#  username      :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  email         :string
+#  password_hash :string
+#  password_salt :string
+#  avatar_url    :string
+#  color         :string
+#
+
 require 'openssl'
 
 class User < ActiveRecord::Base
   ITERATIONS = 20000
   DIGEST = OpenSSL::Digest::SHA256.new
-  VALID_BG_COLORS =
-  [
-      [I18n.t('models.user.color.default'),'#005a55', {style: 'color: #005a55'}, {class: "form-select-option"}],
-      [I18n.t('models.user.color.slatergray'),'slategray', {style: 'color: slategray'}, {class: "form-select-option"}],
-      [I18n.t('models.user.color.blue'),'blue', {style: 'color: blue'}, {class: "form-select-option"}],
-      [I18n.t('models.user.color.turquoise'),'turquoise', {style: 'color: turquoise'}, {class: "form-select-option"}],
-      [I18n.t('models.user.color.orange'),'orange', {style: 'color: orange'}, {class: "form-select-option"}],
-      [I18n.t('models.user.color.green'),'green', {style: 'color: green'}, {class: "form-select-option"}]
-  ]
 
   has_many :questions
 
@@ -28,7 +35,7 @@ class User < ActiveRecord::Base
   validates_length_of :username, maximum: 40
   validates_format_of :username, with: /\A[\w]+\z/
 
-  validates_inclusion_of :color, in: VALID_BG_COLORS.map {|el| el[1]},
+  validates_inclusion_of :color, in: proc{User.get_valid_bg_color.map {|el| el[1]}},
                          on: :update
 
   before_save :encrypt_password
@@ -53,6 +60,17 @@ class User < ActiveRecord::Base
     password_hash.unpack('H*')[0]
   end
 
+  def self.get_valid_bg_color
+    [
+        [I18n.t('models.user.color.default'),'#005a55', {style: 'color: #005a55'}, {class: "form-select-option"}],
+        [I18n.t('models.user.color.slatergray'),'slategray', {style: 'color: slategray'}, {class: "form-select-option"}],
+        [I18n.t('models.user.color.blue'),'blue', {style: 'color: blue'}, {class: "form-select-option"}],
+        [I18n.t('models.user.color.turquoise'),'turquoise', {style: 'color: turquoise'}, {class: "form-select-option"}],
+        [I18n.t('models.user.color.orange'),'orange', {style: 'color: orange'}, {class: "form-select-option"}],
+        [I18n.t('models.user.color.green'),'green', {style: 'color: green'}, {class: "form-select-option"}]
+    ]
+  end
+
   # Основной метод для аутентификации юзера (логина)
   # Проверяет email и пароль, если пользователь с такой комбинацией есть в базе
   # возвращает этого пользователя.
@@ -68,6 +86,4 @@ class User < ActiveRecord::Base
       nil
     end
   end
-
-
 end

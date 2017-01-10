@@ -24,3 +24,12 @@ en:
   question:
     one: 'question'
     other: 'questions'
+  models:
+      user:
+        color:
+          default: 'Standart'
+          slatergray: 'Gray'
+          blue: 'Blue'
+          turquoise: 'Turquoise'
+          orange: 'Orange'
+          green: 'Green'

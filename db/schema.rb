@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161228185739) do
+ActiveRecord::Schema.define(version: 20170108155640) do
 
   create_table "questions", force: :cascade do |t|
     t.string   "name"
@@ -25,10 +25,14 @@ ActiveRecord::Schema.define(version: 20161228185739) do
 
   add_index "questions", ["user_id"], name: "index_questions_on_user_id"
 
-  create_table "questions_tags", force: :cascade do |t|
+  create_table "questions_tags", id: false, force: :cascade do |t|
     t.integer "question_id"
     t.integer "tag_id"
   end
+
+  add_index "questions_tags", ["question_id", "tag_id"], name: "index_questions_tags_on_question_id_and_tag_id", unique: true
+  add_index "questions_tags", ["question_id"], name: "index_questions_tags_on_question_id"
+  add_index "questions_tags", ["tag_id"], name: "index_questions_tags_on_tag_id"
 
   create_table "tags", force: :cascade do |t|
     t.string   "title"
@@ -36,7 +40,16 @@ ActiveRecord::Schema.define(version: 20161228185739) do
     t.datetime "updated_at", null: false
   end
 
-# Could not dump table "users" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "username"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "email"
+    t.string   "password_hash"
+    t.string   "password_salt"
+    t.string   "avatar_url"
+    t.string   "color"
+  end
 
 end

@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: questions
+#
+#  id                  :integer          not null, primary key
+#  name                :string
+#  answer              :string
+#  text                :string
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  user_id             :integer
+#  questioning_user_id :integer
+#
+# Indexes
+#
+#  index_questions_on_user_id  (user_id)
+#
+
 class Question < ActiveRecord::Base
   belongs_to :user
   belongs_to :questioning_user, class_name: 'User'
@@ -10,13 +28,10 @@ class Question < ActiveRecord::Base
   before_save :create_h_tags
 
   def self.get_tags_from_question(question)
-    question.text.scan(/#[\w]+/).map {|tag| tag.downcase.delete('#')}
+    question.text.scan(/#[\w]+/).map {|tag| tag.downcase.delete('#')}.uniq
   end
 
   def create_h_tags
-    tags = Question.get_tags_from_question(self)
-    h_tags = tags.map {|tag| Tag.find_or_create_by(title: tag)}
-
-    self.tags = h_tags if h_tags.any?
+    Question.get_tags_from_question(self).map {|tag| Tag.find_or_create_by(title: tag)}
   end
 end

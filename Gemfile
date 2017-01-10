@@ -11,6 +11,8 @@ gem 'rails-i18n', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+gem 'annotate'
+
 group :production do
   gem 'pg'
 end
