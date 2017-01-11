@@ -13,6 +13,8 @@ gem 'jquery-rails'
 
 gem 'annotate'
 
+gem 'recaptcha', :require => 'recaptcha/rails'
+
 group :production do
   gem 'pg'
 end

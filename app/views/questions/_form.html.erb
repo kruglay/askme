@@ -30,6 +30,8 @@
           </div>
       <% end %>
 
+      <%= recaptcha_tags size: 'compact' if current_user.blank?%>
+
       <div class="form-action buffer-both">
         <%= f.submit 'Сохранить', class: 'button button-dark button-small' %>
         или
