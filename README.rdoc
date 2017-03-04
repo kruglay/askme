@@ -1,28 +1,11 @@
-== README
+== ASKME
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Учебное приложение, создано по аналогии ask.fm
 
-Things you may want to cover:
+Изучен паттерн MVC, получены навыки работы с основными механизмами RoR:
+    * модели, вьюхи, контроллеры
+    * лейауты, формы, хелперы, паршиалы
+    * использование локалей(i18n)
+    * связи в БД(один к одному, один ко многим, многие ко многим)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Ссылка на деплой(heroku): https://askmelite.herokuapp.com/
