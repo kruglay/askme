@@ -15,10 +15,10 @@ gem 'annotate'
 
 gem 'recaptcha', :require => 'recaptcha/rails'
 
-gem 'rails_12factor', '~> 0.0.3'
 
 group :production do
   gem 'pg'
+  gem 'rails_12factor', '~> 0.0.3'
 end
 
 group :development, :test do
