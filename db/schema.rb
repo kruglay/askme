@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20170108155640) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "questions", force: :cascade do |t|
     t.string   "name"
     t.string   "answer"
@@ -23,16 +26,16 @@ ActiveRecord::Schema.define(version: 20170108155640) do
     t.integer  "questioning_user_id"
   end
 
-  add_index "questions", ["user_id"], name: "index_questions_on_user_id"
+  add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
 
-  create_table "questions_tags", id: false, force: :cascade do |t|
+  create_table "questions_tags", force: :cascade do |t|
     t.integer "question_id"
     t.integer "tag_id"
   end
 
-  add_index "questions_tags", ["question_id", "tag_id"], name: "index_questions_tags_on_question_id_and_tag_id", unique: true
-  add_index "questions_tags", ["question_id"], name: "index_questions_tags_on_question_id"
-  add_index "questions_tags", ["tag_id"], name: "index_questions_tags_on_tag_id"
+  add_index "questions_tags", ["question_id", "tag_id"], name: "index_questions_tags_on_question_id_and_tag_id", unique: true, using: :btree
+  add_index "questions_tags", ["question_id"], name: "index_questions_tags_on_question_id", using: :btree
+  add_index "questions_tags", ["tag_id"], name: "index_questions_tags_on_tag_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string   "title"
@@ -52,4 +55,5 @@ ActiveRecord::Schema.define(version: 20170108155640) do
     t.string   "color"
   end
 
+  add_foreign_key "questions", "users"
 end
